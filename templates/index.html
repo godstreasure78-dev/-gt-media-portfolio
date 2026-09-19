@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GT Media | Graphic Design Portfolio</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="portfolio">
+
+        <header class="portfolio-header">
+
+            <div class="brand">
+                GT<span>.</span>MEDIA
+            </div>
+
+            <h1>
+                Graphic Design Portfolio
+            </h1>
+
+            <p>
+                Creative designs that communicate ideas, build brands,
+                and leave a lasting impression.
+            </p>
+
+        </header>
+
+
+        <!-- SEARCH BOX -->
+
+        <div class="search-container">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    
+                </span>
+
+                <input
+                    type="search"
+                    id="designSearch"
+                    placeholder="Search designs by title or category..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    aria-label="Clear search"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY FILTERS -->
+
+        <div
+            class="categories"
+            id="categories"
+        >
+
+            <button
+                class="category active"
+                data-category="all"
+            >
+                All
+            </button>
+
+            <button
+                class="category"
+                data-category="flyers"
+            >
+                Flyers
+            </button>
+
+            <button
+                class="category"
+                data-category="logos"
+            >
+                Logos
+            </button>
+
+            <button
+                class="category"
+                data-category="branding"
+            >
+                Branding
+            </button>
+
+            <button
+                class="category"
+                data-category="posters"
+            >
+                Posters
+            </button>
+
+            <button
+                class="category"
+                data-category="social"
+            >
+                Social Media
+            </button>
+
+            <button
+                class="category"
+                data-category="church"
+            >
+                Church Designs
+            </button>
+
+            <button
+                class="category"
+                data-category="other"
+            >
+                Other
+            </button>
+
+        </div>
+
+
+        <!-- DESIGN GRID -->
+
+        <section
+            class="design-grid"
+            id="designGrid"
+        >
+
+            {% if designs %}
+
+                {% for design in designs %}
+
+                <article
+                    class="design-card"
+                    data-category="{{ design['category']|lower }}"
+                    data-title="{{ design['title'] }}"
+                    data-type="{{ design['category'] }}"
+                    data-description="{{ design['description'] or '' }}"
+                >
+
+                    <div class="design-image">
+
+                        <img
+                            src="{{ url_for(
+                                'uploaded_file',
+                                filename=design['image']
+                            ) }}"
+                            alt="{{ design['title'] }}"
+                        >
+
+                        <div class="view-icon">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <div class="design-details">
+
+                        <div>
+
+                            <h2>
+                                {{ design['title'] }}
+                            </h2>
+
+                            <p>
+                                {{ design['category'] }}
+                            </p>
+
+                            {% if design['description'] %}
+
+                            <p class="design-description">
+                                {{ design['description'] }}
+                            </p>
+
+                            {% endif %}
+
+                        </div>
+
+                        <span class="card-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-portfolio">
+
+                    <h2>
+                        No designs yet
+                    </h2>
+
+                    <p>
+                        New creative projects will appear here soon.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- NO SEARCH RESULTS -->
+
+        <div
+            class="no-search-results"
+            id="noSearchResults"
+        >
+
+            <h2>
+                No designs found
+            </h2>
+
+            <p>
+                Try searching for another title or category.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- IMAGE MODAL -->
+
+    <div
+        class="image-modal"
+        id="imageModal"
+    >
+
+        <button
+            class="modal-close"
+            id="modalClose"
+            aria-label="Close image"
+        >
+            &times;
+        </button>
+
+        <div class="modal-content">
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Design Preview"
+            >
+
+            <div class="modal-info">
+
+                <h2 id="modalTitle">
+                    Design
+                </h2>
+
+                <p id="modalCategory">
+                    Category
+                </p>
+
+                <p id="modalDescription">
+                    Description
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>

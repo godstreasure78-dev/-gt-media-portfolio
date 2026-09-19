@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GT Media | Add Design</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='admin.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <!-- =====================================
+             SIDEBAR
+        ====================================== -->
+
+        <aside class="sidebar">
+
+            <div class="admin-logo">
+                GT<span>.</span>MEDIA
+            </div>
+
+            <p class="panel-label">
+                ADMIN PANEL
+            </p>
+
+            <nav>
+
+                <a href="{{ url_for('dashboard') }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('add_design') }}" class="active">
+                    Add Design
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="{{ url_for('home') }}">
+                    ← View Portfolio
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================
+             MAIN CONTENT
+        ====================================== -->
+
+        <main class="admin-main">
+
+            <header class="admin-header">
+
+                <div>
+
+                    <p class="small-title">
+                        PORTFOLIO
+                    </p>
+
+                    <h1>
+                        Add New Design
+                    </h1>
+
+                </div>
+
+            </header>
+
+
+            <!-- =====================================
+                 ADD DESIGN FORM
+            ====================================== -->
+
+            <section class="add-design-section">
+
+                <form
+                    id="designForm"
+                    action="{{ url_for('add_design') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    <!-- DESIGN TITLE -->
+
+                    <div class="form-group">
+
+                        <label for="designTitle">
+                            Design Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="designTitle"
+                            name="designTitle"
+                            placeholder="e.g. Creative Business Flyer"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-group">
+
+                        <label for="designCategory">
+                            Category
+                        </label>
+
+                        <select
+                            id="designCategory"
+                            name="designCategory"
+                            required
+                        >
+
+                            <option value="">
+                                Select a category
+                            </option>
+
+                            <option value="flyers">
+                                Flyers
+                            </option>
+
+                            <option value="logos">
+                                Logos
+                            </option>
+
+                            <option value="branding">
+                                Branding
+                            </option>
+
+                            <option value="posters">
+                                Posters
+                            </option>
+
+                            <option value="social">
+                                Social Media
+                            </option>
+
+                            <option value="church">
+                                Church Designs
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label for="designDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="designDescription"
+                            name="designDescription"
+                            rows="5"
+                            placeholder="Write a short description of the design..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- IMAGE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Design Image
+                        </label>
+
+                        <div class="upload-box">
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                            <h3>
+                                Upload your design
+                            </h3>
+
+                            <p>
+                                JPG, PNG or WEBP
+                            </p>
+
+                            <input
+                                type="file"
+                                id="designImage"
+                                name="designImage"
+                                accept="image/png,image/jpeg,image/webp"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- IMAGE PREVIEW -->
+
+                    <div
+                        class="image-preview"
+                        id="imagePreview"
+                    ></div>
+
+
+                    <!-- FORM ACTIONS -->
+
+                    <div class="form-actions">
+
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                            class="cancel-button"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="save-button"
+                        >
+                            Save Design
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ADMIN JAVASCRIPT -->
+
+    <script
+        src="{{ url_for('static', filename='admin.js') }}"
+    ></script>
+
+</body>
+
+</html>

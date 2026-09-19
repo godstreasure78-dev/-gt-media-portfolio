@@ -1,0 +1,967 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   PORTFOLIO CONTAINER
+========================================= */
+
+.portfolio {
+    width: 100%;
+    max-width: 1120px;
+    margin: auto;
+    padding: 70px 35px 100px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.portfolio-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 45px;
+}
+
+.brand {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+    color: #eeeeee;
+}
+
+.brand span {
+    color: #ff7418;
+}
+
+.portfolio-header h1 {
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -1.8px;
+    margin-bottom: 18px;
+}
+
+.portfolio-header p {
+    color: #929292;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 620px;
+    margin: auto;
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+.search-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 28px;
+}
+
+.search-box {
+    width: 100%;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    background: #111111;
+
+    border: 1px solid #2b2b2b;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.search-box:hover {
+    border-color: #3a3a3a;
+}
+
+.search-box:focus-within {
+    border-color: #ff7418;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 116, 24, 0.10),
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(-1px);
+}
+
+
+/* SEARCH ICON */
+
+.search-icon {
+    width: 55px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #888888;
+
+    font-size: 18px;
+}
+
+
+/* SEARCH INPUT */
+
+.search-box input {
+    flex: 1;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0 10px 0 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.search-box input::placeholder {
+    color: #707070;
+}
+
+
+/* CLEAR BUTTON */
+
+.clear-search {
+    width: 34px;
+    height: 34px;
+
+    margin-right: 12px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #242424;
+
+    color: #aaaaaa;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.clear-search.show {
+    display: flex;
+}
+
+.clear-search:hover {
+    background: #ff7418;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+
+/* =========================================
+   CATEGORY FILTERS
+========================================= */
+
+.categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 11px;
+
+    max-width: 920px;
+
+    margin: 0 auto 50px;
+}
+
+.category {
+    border: 1px solid #292929;
+
+    background: #111111;
+
+    color: #cfcfcf;
+
+    padding: 13px 23px;
+
+    border-radius: 100px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.category:hover {
+    border-color: #ff7418;
+    color: #ff7418;
+
+    transform: translateY(-2px);
+}
+
+.category.active {
+    background: #ff7418;
+
+    border-color: #ff7418;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(255, 116, 24, 0.18);
+}
+
+
+/* =========================================
+   DESIGN GRID
+========================================= */
+
+.design-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* =========================================
+   DESIGN CARD
+========================================= */
+
+.design-card {
+    background: #111111;
+
+    border: 1px solid #1f1f1f;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation: cardIn 0.5s ease both;
+}
+
+.design-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #333333;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.design-image {
+    position: relative;
+
+    width: 100%;
+    height: 320px;
+
+    background: #171717;
+
+    overflow: hidden;
+}
+
+.design-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+.design-card:hover .design-image img {
+    transform: scale(1.04);
+
+    filter: brightness(0.78);
+}
+
+
+/* =========================================
+   VIEW ICON
+========================================= */
+
+.view-icon {
+    position: absolute;
+
+    top: 17px;
+    right: 17px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    opacity: 0;
+
+    transform: translateY(-5px);
+
+    transition: all 0.3s ease;
+
+    z-index: 2;
+}
+
+.design-card:hover .view-icon {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   CARD DETAILS
+========================================= */
+
+.design-details {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding: 19px 20px 21px;
+
+    background: #111111;
+}
+
+.design-details h2 {
+    color: #eeeeee;
+
+    font-size: 17px;
+
+    font-weight: 650;
+
+    margin-bottom: 7px;
+}
+
+.design-details > div > p:first-of-type {
+    color: #ff7418;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   DESIGN DESCRIPTION
+========================================= */
+
+.design-description {
+    margin-top: 8px;
+
+    color: #888888 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1.5;
+
+    opacity: 0.9;
+
+    max-width: 500px;
+}
+
+
+/* =========================================
+   CARD ARROW
+========================================= */
+
+.card-arrow {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1c1c1c;
+
+    color: #bbbbbb;
+
+    font-size: 17px;
+
+    transition: all 0.25s ease;
+}
+
+.design-card:hover .card-arrow {
+    background: #ff7418;
+
+    color: #ffffff;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   EMPTY PORTFOLIO
+========================================= */
+
+.empty-portfolio {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+.empty-portfolio h2 {
+    margin-bottom: 10px;
+}
+
+.empty-portfolio p {
+    color: #888888;
+}
+
+
+/* =========================================
+   NO SEARCH RESULTS
+========================================= */
+
+.no-search-results {
+    display: none;
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+.no-search-results.show {
+    display: block;
+}
+
+.no-search-results h2 {
+    color: #ffffff;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.no-search-results p {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   IMAGE MODAL
+========================================= */
+
+.image-modal {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 30px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 9999;
+}
+
+.image-modal.active,
+.image-modal.show {
+    display: flex;
+}
+
+
+/* =========================================
+   MODAL CONTENT
+========================================= */
+
+.modal-content {
+    position: relative;
+
+    width: min(1000px, 94vw);
+
+    max-height: 95vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow-y: auto;
+
+    animation: modalZoom 0.25s ease;
+}
+
+.modal-content img {
+    max-width: 100%;
+
+    max-height: 70vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================================
+   MODAL INFORMATION
+========================================= */
+
+.modal-info {
+    width: 100%;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.modal-info h2 {
+    color: #ffffff;
+
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.modal-info p {
+    margin-bottom: 8px;
+}
+
+#modalCategory {
+    color: #ff7418;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+#modalDescription {
+    color: #b5b5b5;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.modal-close {
+    position: fixed;
+
+    top: 22px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ff7418;
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10000;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+
+    background: #ff5d00;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes modalZoom {
+
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 750px) {
+
+    .portfolio {
+        padding: 55px 22px 80px;
+    }
+
+    .portfolio-header {
+        margin-bottom: 38px;
+    }
+
+    .search-container {
+        max-width: 600px;
+    }
+
+    .categories {
+        margin-bottom: 38px;
+    }
+
+    .category {
+        padding: 11px 19px;
+    }
+
+    .design-grid {
+        gap: 18px;
+    }
+
+    .design-image {
+        height: 270px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .portfolio {
+        padding: 45px 15px 65px;
+    }
+
+    .brand {
+        font-size: 13px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 25px;
+    }
+
+    .portfolio-header {
+        margin-bottom: 32px;
+    }
+
+    .portfolio-header h1 {
+        font-size: 30px;
+
+        letter-spacing: -1px;
+
+        line-height: 1.15;
+    }
+
+    .portfolio-header p {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* MOBILE SEARCH */
+
+    .search-container {
+        margin-bottom: 20px;
+    }
+
+    .search-box {
+        height: 50px;
+
+        border-radius: 12px;
+    }
+
+    .search-icon {
+        width: 45px;
+
+        font-size: 15px;
+    }
+
+    .search-box input {
+        font-size: 13px;
+    }
+
+    .clear-search {
+        width: 28px;
+        height: 28px;
+
+        margin-right: 8px;
+
+        font-size: 18px;
+    }
+
+
+    /* MOBILE CATEGORIES */
+
+    .categories {
+        gap: 8px;
+
+        margin-bottom: 30px;
+    }
+
+    .category {
+        padding: 9px 15px;
+
+        font-size: 12px;
+    }
+
+
+    /* MOBILE GRID */
+
+    .design-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .design-image {
+        height: 205px;
+    }
+
+    .design-details {
+        padding: 14px 12px 15px;
+    }
+
+    .design-details h2 {
+        font-size: 13px;
+
+        line-height: 1.3;
+
+        margin-bottom: 5px;
+    }
+
+    .design-details > div > p:first-of-type {
+        font-size: 11px;
+    }
+
+    .design-description {
+        margin-top: 6px;
+
+        font-size: 11px !important;
+
+        line-height: 1.4;
+    }
+
+    .card-arrow {
+        width: 28px;
+        height: 28px;
+
+        font-size: 14px;
+    }
+
+    .view-icon {
+        width: 30px;
+        height: 30px;
+
+        top: 10px;
+        right: 10px;
+
+        font-size: 14px;
+    }
+
+
+    /* MOBILE MODAL */
+
+    .image-modal {
+        padding: 15px;
+    }
+
+    .modal-content {
+        width: 94vw;
+
+        max-height: 90vh;
+    }
+
+    .modal-content img {
+        max-width: 96vw;
+
+        max-height: 68vh;
+
+        border-radius: 8px;
+    }
+
+    .modal-info {
+        padding: 15px 8px;
+    }
+
+    .modal-info h2 {
+        font-size: 20px;
+    }
+
+    #modalCategory {
+        font-size: 13px;
+    }
+
+    #modalDescription {
+        font-size: 14px;
+
+        line-height: 1.5;
+    }
+
+    .modal-close {
+        top: 14px;
+        right: 14px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 26px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 350px) {
+
+    .portfolio {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .design-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .design-image {
+        height: 260px;
+    }
+
+    .design-description {
+        font-size: 12px !important;
+    }
+
+}

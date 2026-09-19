@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Design | GT Media</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #f5f5f5;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .top h1 {
+            font-size: 28px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #ff8a00;
+            font-weight: 600;
+        }
+
+        .form-box {
+            background: #141414;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #ff8a00;
+        }
+
+        .current-image {
+            margin-bottom: 20px;
+        }
+
+        .current-image img {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #ff8a00;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #e67600;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .form-box {
+                padding: 20px;
+            }
+
+            .top h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top">
+        <h1>Edit Design</h1>
+
+        <a href="/admin/dashboard" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="form-box">
+
+        <form
+            action="/admin/edit-design/{{ design['id'] }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="form-group">
+                <label for="designTitle">Project Title</label>
+
+                <input
+                    type="text"
+                    id="designTitle"
+                    name="designTitle"
+                    value="{{ design['title'] }}"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="designCategory">Category</label>
+
+                <select
+                    id="designCategory"
+                    name="designCategory"
+                    required
+                >
+                    <option value="Flyer"
+                        {% if design['category'] == 'Flyer' %}selected{% endif %}>
+                        Flyer
+                    </option>
+
+                    <option value="Logo"
+                        {% if design['category'] == 'Logo' %}selected{% endif %}>
+                        Logo
+                    </option>
+
+                    <option value="Branding"
+                        {% if design['category'] == 'Branding' %}selected{% endif %}>
+                        Branding
+                    </option>
+
+                    <option value="Business Card"
+                        {% if design['category'] == 'Business Card' %}selected{% endif %}>
+                        Business Card
+                    </option>
+
+                    <option value="Social Media"
+                        {% if design['category'] == 'Social Media' %}selected{% endif %}>
+                        Social Media
+                    </option>
+
+                    <option value="Other"
+                        {% if design['category'] == 'Other' %}selected{% endif %}>
+                        Other
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="designDescription">Description</label>
+
+                <textarea
+                    id="designDescription"
+                    name="designDescription"
+                >{{ design['description'] }}</textarea>
+            </div>
+
+
+            <div class="current-image">
+
+                <label>Current Image</label>
+
+                <img
+                    src="{{ url_for('static', filename='../uploads/' + design['image']) }}"
+                    alt="{{ design['title'] }}"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="designImage">
+                    Replace Image (Optional)
+                </label>
+
+                <input
+                    type="file"
+                    id="designImage"
+                    name="designImage"
+                    accept="image/*"
+                >
+
+            </div>
+
+
+            <button type="submit" class="save-btn">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

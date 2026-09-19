@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GT Media | Admin Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            GT<span>.</span>MEDIA
+        </div>
+
+        <p class="login-label">PRIVATE ADMIN AREA</p>
+
+        <h1>Welcome back</h1>
+
+        <p class="login-subtitle">
+            Login to manage your portfolio.
+        </p>
+
+        {% if error %}
+            <div class="login-error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="login-field">
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    required
+                >
+            </div>
+
+            <div class="login-field">
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Login
+            </button>
+
+        </form>
+
+        <a href="/" class="back-home">
+            ← Back to portfolio
+        </a>
+
+    </div>
+
+</body>
+</html>
